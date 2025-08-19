@@ -1,0 +1,20 @@
+{
+  "hooks": {
+    "postEdit": {
+      "python": [
+        "black {file}",
+        "isort {file}"
+      ]
+    }
+  },
+  "tools": {
+    "preferences": {
+      "bash": {
+        "timeout": 300000
+      },
+      "grep": {
+        "defaultMode": "content"
+      }
+    }
+  }
+}

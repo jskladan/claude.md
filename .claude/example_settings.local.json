@@ -1,0 +1,68 @@
+{
+  "statusLine": {
+    "enabled": true,
+    "format": "{{branch}} | {{model}} | {{time}}"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git show:*)",
+      "Bash(git log:*)",
+      "Bash(git commit:*)",
+      "Bash(git branch:*)",
+      "Bash(black:*)",
+      "Bash(isort:*)",
+      "Bash(flake8:*)",
+      "Bash(mypy:*)",
+      "Bash(prettier:*)",
+      "Bash(npx prettier:*)",
+      "Bash(eslint:*)",
+      "Bash(npx eslint:*)",
+      "Bash(stylelint:*)",
+      "Bash(npx stylelint:*)",
+      "Bash(htmlhint:*)",
+      "Bash(npx htmlhint:*)",
+      "Bash(ls:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(cat:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(wc:*)",
+      "Bash(which:*)",
+      "Bash(echo:*)",
+      "Bash(pytest:*)",
+      "Bash(python -m pytest:*)",
+      "WebFetch(domain:docs.anthropic.com)",
+      "WebFetch(domain:docs.python.org)"
+    ],
+    "deny": [
+      "Bash(dd:*)",
+      "Bash(mkfs:*)",
+      "Bash(fdisk:*)",
+      "Bash(format:*)"
+    ],
+    "ask": [
+      "Bash(rm:*)",
+      "Bash(mv:*)",
+      "Bash(cp:*)",
+      "Bash(chmod:*)",
+      "Bash(chown:*)",
+      "Bash(pip install:*)",
+      "Bash(npm install:*)",
+      "Bash(apt:*)",
+      "Bash(brew:*)",
+      "Bash(sudo:*)",
+      "Bash(killall:*)",
+      "Bash(pkill:*)",
+      "Bash(git checkout:*)",
+      "Bash(git push:*)",
+      "Bash(git pull:*)",
+      "Bash(git reset:*)",
+      "Bash(git rebase:*)",
+      "Bash(git merge:*)"
+    ]
+  }
+}
