@@ -1,11 +1,20 @@
 {
   "hooks": {
-    "postEdit": {
-      "python": [
-        "black {file}",
-        "isort {file}"
-      ]
-    }
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [[ {file} == *.py ]]; then black {file}; fi"
+          },
+          {
+            "type": "command",
+            "command": "if [[ {file} == *.py ]]; then isort {file}; fi"
+          }
+        ]
+      }
+    ]
   },
   "tools": {
     "preferences": {
