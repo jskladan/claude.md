@@ -37,3 +37,12 @@ This repository provides a structured approach to AI-assisted development throug
 
 For enhanced Claude Code experience, install the statusline configuration:
 [chongdashu/cc-statusline](https://github.com/chongdashu/cc-statusline)
+
+## Spec-Driven Development
+
+Spec-Driven Development flips the script on traditional software development. For decades, code has been king —
+specifications were just scaffolding we built and discarded once the "real work" of coding began.
+Spec-Driven Development changes this: specifications become executable,
+directly generating working implementations rather than just guiding them.
+
+[github/spec-kit](https://github.com/github/spec-kit)
