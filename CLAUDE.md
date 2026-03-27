@@ -34,11 +34,8 @@ Create new language-specific guidelines following the established patterns:
 ├── settings.json              # Project-wide settings (team shared)
 ├── settings.local.json        # Personal overrides (gitignored)
 ├── commands/                  # Custom slash commands
-│   ├── commit.md             # Smart commits with style detection
 │   ├── format.md             # Unified formatting across all file types
-│   ├── merge.md              # Intelligent commit squashing
 │   ├── pyformat.md           # Python formatting and linting
-│   ├── reword.md             # Smart message rewording with style transformation
 │   ├── validate_setup.md     # Framework setup validation
 │   └── webformat.md          # Web frontend formatting
 └── guidelines/               # Modular documentation
@@ -48,6 +45,18 @@ Create new language-specific guidelines following the established patterns:
     ├── git.md                # Git practices and workflows
     ├── claude-code.md        # Claude Code integration
     └── quality-checklist.md  # Comprehensive QA checklist
+
+.claude-plugin/
+└── marketplace.json          # Plugin marketplace definition
+
+claude-plugins/
+├── git/                      # Git workflow automation plugin
+│   ├── .claude-plugin/plugin.json
+│   ├── commands/             # /git:commit, /git:merge, /git:reword
+│   └── skills/               # shallow-clone, workflow automation
+└── jira/                     # Jira integration plugin
+    ├── .claude-plugin/plugin.json
+    └── commands/             # /jira:list, /jira:create
 ```
 
 ### Customization
@@ -73,10 +82,27 @@ Create new language-specific guidelines following the established patterns:
 
 The modular structure supports the iterative development approach:
 
-1. **Development Phase**: Use `/commit dev` for verbose commits with detailed context
+1. **Development Phase**: Use `/git:commit dev` for verbose commits with detailed context
 2. **Quality Assurance**: Follow language-specific checklists
-3. **History Cleanup**: Use `/merge` and `/reword` with style control for clean final history
+3. **History Cleanup**: Use `/git:merge` and `/git:reword` with style control for clean final history
 4. **Continuous Improvement**: Refine guidelines based on project experience
+
+## Plugins
+
+This repository includes reusable Claude Code plugins:
+
+### Git Plugin (`/git:*`)
+Git workflow automation:
+- `/git:commit [style]` - Smart commits with style detection (dev/final)
+- `/git:merge [count|sha] [style]` - Intelligent commit squashing
+- `/git:reword [sha] [style]` - Commit message transformation
+- `/git:shallow-clone` - Shallow clone to temp directory
+- `/git:workflow` - Proactive workflow automation with checkpoints
+
+### Jira Plugin (`/jira:*`)
+Jira ticket management using [jtk CLI](https://github.com/jskladan/jtk):
+- `/jira:list [options]` - List tickets with flexible filtering
+- `/jira:create <project> <summary> [options]` - Create new tickets
 
 ## Extensions
 

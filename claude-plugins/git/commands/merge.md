@@ -1,36 +1,44 @@
 ---
 description: "Smart commit squashing with intelligent message combination"
-args: "[count_or_sha] [style]"
+argument-hint: "[count_or_sha] [style]"
 ---
 
-# Smart Merge Command
+## Name
+git:merge
 
-Intelligently squashes commits using soft reset with automatic commit message combination and tone detection.
+## Synopsis
+```
+/git:merge [count_or_sha] [style]
+```
+
+## Description
+
+Intelligently squashes commits using soft reset with automatic commit message combination and tone detection. Consolidates multiple commits into a single cohesive commit with a synthesized message.
 
 ## Usage
-- `/merge` - Merge last 2 commits with auto-style detection
-- `/merge 1` - Merge last 2 commits (explicit)
-- `/merge N` - Merge last N+1 commits (top + N previous)
-- `/merge SHA` - Merge from HEAD back to and including specified SHA
-- `/merge N dev` - Force verbose development style for combined message
-- `/merge SHA final` - Force concise final style for combined message
+- `/git:merge` - Merge last 2 commits with auto-style detection
+- `/git:merge 1` - Merge last 2 commits (explicit)
+- `/git:merge N` - Merge last N+1 commits (top + N previous)
+- `/git:merge SHA` - Merge from HEAD back to and including specified SHA
+- `/git:merge N dev` - Force verbose development style for combined message
+- `/git:merge SHA final` - Force concise final style for combined message
 
 ## Merge Modes
 
 ### Count-Based Merging
 ```bash
-/merge 3         # Merges: HEAD + 3 previous commits (4 total)
-/merge 1         # Merges: HEAD + 1 previous commit (2 total)
-/merge 3 dev     # Merge 4 commits with verbose style
-/merge 1 final   # Merge 2 commits with concise style
+/git:merge 3         # Merges: HEAD + 3 previous commits (4 total)
+/git:merge 1         # Merges: HEAD + 1 previous commit (2 total)
+/git:merge 3 dev     # Merge 4 commits with verbose style
+/git:merge 1 final   # Merge 2 commits with concise style
 ```
 
 ### SHA-Based Merging
 ```bash
-/merge abc1234        # Merges: HEAD back to abc1234 (inclusive)
-/merge abc123         # Short SHA also supported
-/merge abc1234 dev    # Merge to SHA with verbose style
-/merge abc123 final   # Merge to SHA with concise style
+/git:merge abc1234        # Merges: HEAD back to abc1234 (inclusive)
+/git:merge abc123         # Short SHA also supported
+/git:merge abc1234 dev    # Merge to SHA with verbose style
+/git:merge abc123 final   # Merge to SHA with concise style
 ```
 
 ## Style Control
@@ -45,7 +53,7 @@ Intelligently squashes commits using soft reset with automatic commit message co
 3. **Auto-detection**: Based on change scope and context
 4. **Default**: Verbose development style when uncertain
 
-## Process
+## Implementation
 
 ### 1. Validate Range
 - **Count mode**: Verify sufficient commit history exists
@@ -89,7 +97,7 @@ Co-authored-by: Claude <noreply@anthropic.com>
 Implement [feature area]
 
 - Combined key change 1
-- Combined key change 2  
+- Combined key change 2
 - Combined key change 3
 
 Co-authored-by: Claude <noreply@anthropic.com>
@@ -136,12 +144,12 @@ git commit -m "Generated combined message"
 git log --oneline -4
 # abc1234 Fix authentication bug
 # def5678 WIP: implement OAuth flow - token handling complete
-# ghi9012 Add user registration endpoint  
+# ghi9012 Add user registration endpoint
 # jkl3456 Update database schema
 
-/merge 2         # Auto-detect style (likely verbose due to WIP commit)
-/merge 2 final   # Force concise final style for cleanup
-/merge 2 dev     # Force verbose style to preserve context
+/git:merge 2         # Auto-detect style (likely verbose due to WIP commit)
+/git:merge 2 final   # Force concise final style for cleanup
+/git:merge 2 dev     # Force verbose style to preserve context
 ```
 
 ### SHA-based Merge
@@ -152,8 +160,8 @@ git log --oneline -4
 # ghi9012 Add OAuth configuration
 # jkl3456 Previous unrelated commit
 
-/merge ghi9012 final   # Merge 3 commits with clean final style
-/merge ghi9012 dev     # Merge 3 commits preserving detailed context
+/git:merge ghi9012 final   # Merge 3 commits with clean final style
+/git:merge ghi9012 dev     # Merge 3 commits preserving detailed context
 ```
 
 ### Style Transformation Examples
@@ -166,11 +174,11 @@ git log --oneline -3
 # def5678 WIP: add token validation - expiration checks done, need cleanup
 # ghi9012 WIP: user auth foundation - basic flow working, error handling pending
 
-/merge 2 final
+/git:merge 2 final
 # Result: Clean concise commit ready for production
 ```
 
-#### Context Preservation  
+#### Context Preservation
 ```bash
 # Before: Terse commits that need context
 git log --oneline -3
@@ -178,7 +186,7 @@ git log --oneline -3
 # def5678 Update auth
 # ghi9012 Add validation
 
-/merge 2 dev
+/git:merge 2 dev
 # Result: Detailed explanation of what was actually fixed/changed
 ```
 
@@ -190,8 +198,8 @@ git log --oneline -3
 - **Co-authorship**: Maintains proper attribution
 - **Safety first**: Validates before executing destructive operations
 
-### Complements /commit Command
-- **Development phase**: Use `/commit dev` for detailed WIP commits
-- **Cleanup phase**: Use `/merge N` to consolidate related commits  
-- **Final phase**: Use `/commit final` for clean final commits
+### Complements /git:commit Command
+- **Development phase**: Use `/git:commit dev` for detailed WIP commits
+- **Cleanup phase**: Use `/git:merge N` to consolidate related commits
+- **Final phase**: Use `/git:commit final` for clean final commits
 - **History management**: Strategic combination of both commands

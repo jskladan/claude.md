@@ -1,17 +1,25 @@
 ---
 description: "Smart commit message rewording with style transformation"
-args: "[sha] [style_or_message]"
+argument-hint: "[sha] [style_or_message]"
 ---
 
-# Smart Reword Command
+## Name
+git:reword
 
-Intelligently rewrites commit messages with style transformation and tone adjustment capabilities.
+## Synopsis
+```
+/git:reword [sha] [style_or_message]
+```
+
+## Description
+
+Intelligently rewrites commit messages with style transformation and tone adjustment capabilities. Can transform verbose development commits into clean final messages or add context to terse commits.
 
 ## Usage
-- `/reword SHA "New message"` - Reword with specific message
-- `/reword SHA` - AI-assisted reword with auto-style detection
-- `/reword SHA dev` - Transform to verbose development style
-- `/reword SHA final` - Transform to concise final style
+- `/git:reword SHA "New message"` - Reword with specific message
+- `/git:reword SHA` - AI-assisted reword with auto-style detection
+- `/git:reword SHA dev` - Transform to verbose development style
+- `/git:reword SHA final` - Transform to concise final style
 
 ## Style Transformation
 
@@ -26,7 +34,7 @@ When no style specified, AI analyzes:
 - **Position in history**: Recent vs older commits
 - **Context clues**: File types and change patterns
 
-## Process
+## Implementation
 
 ### 1. Validate Commit
 ```bash
@@ -103,26 +111,26 @@ The AI examines the commit to understand:
 - **Detail approach**: Technical decisions and alternatives
 - **Include next steps**: Follow-up work or considerations
 
-#### Concise Enhancement  
+#### Concise Enhancement
 - **Distill essence**: Core functionality delivered
 - **Bullet key changes**: Most important modifications
 - **Remove verbosity**: Strip implementation details
 - **Focus on value**: What the commit accomplishes
 
-## Integration Examples
+## Examples
 
 ### Development Cleanup
 ```bash
 # Convert old verbose commits to clean final style
-/reword abc1234 final
-/reword def5678 final
-/reword ghi9012 final
+/git:reword abc1234 final
+/git:reword def5678 final
+/git:reword ghi9012 final
 ```
 
 ### Adding Context
 ```bash
 # Add detail to cryptic commit messages
-/reword abc1234 dev
+/git:reword abc1234 dev
 # "." becomes detailed explanation of changes
 ```
 
@@ -130,9 +138,15 @@ The AI examines the commit to understand:
 ```bash
 # Multiple commits can be reworded with consistent style
 git log --oneline -5  # Review recent commits
-/reword <sha1> final
-/reword <sha2> final  
-/reword <sha3> final
+/git:reword <sha1> final
+/git:reword <sha2> final
+/git:reword <sha3> final
+```
+
+### Custom Message
+```bash
+# Provide specific new message
+/git:reword abc1234 "Refactor authentication module for better testability"
 ```
 
 ## Safety Features
@@ -148,3 +162,10 @@ reword = "!f() {\n  GIT_SEQUENCE_EDITOR=\"sed -i '' 1s/^pick/reword/\" GIT_EDITO
 ```
 
 Falls back to manual method when alias not configured.
+
+## Integration with Other Commands
+
+### Workflow with /git:commit and /git:merge
+- **During development**: Use `/git:commit dev` for verbose WIP commits
+- **Before PR**: Use `/git:reword SHA final` to clean up commit messages
+- **Alternative**: Use `/git:merge N final` to squash and clean simultaneously

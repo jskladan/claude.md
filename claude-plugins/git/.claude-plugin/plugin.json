@@ -1,0 +1,8 @@
+{
+  "name": "git",
+  "description": "Git workflow automation and utilities",
+  "version": "0.0.2",
+  "author": {
+    "name": "jskladan"
+  }
+}

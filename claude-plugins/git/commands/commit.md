@@ -1,17 +1,25 @@
 ---
 description: "Create commit with automatic style detection based on development phase"
-args: "[style_or_message]"
+argument-hint: "[style_or_message]"
 ---
 
-# Smart Commit Command
+## Name
+git:commit
 
-Creates commits with appropriate verbosity based on development phase detection or explicit style arguments.
+## Synopsis
+```
+/git:commit [style_or_message]
+```
+
+## Description
+
+Creates commits with appropriate verbosity based on development phase detection or explicit style arguments. Automatically stages all changes and generates intelligent commit messages.
 
 ## Usage
-- `/commit` - Auto-detect style from context and create appropriate commit
-- `/commit "Custom message"` - Use provided message as base, auto-detect style
-- `/commit dev` - Force verbose development-style commit
-- `/commit final` - Force concise final-style commit
+- `/git:commit` - Auto-detect style from context and create appropriate commit
+- `/git:commit "Custom message"` - Use provided message as base, auto-detect style
+- `/git:commit dev` - Force verbose development-style commit
+- `/git:commit final` - Force concise final-style commit
 
 ## Style Detection
 
@@ -24,7 +32,7 @@ The AI analyzes context clues to determine appropriate commit style:
 - **Verbose triggers**: `dev`, `wip`, `test`, `.` (any single character)
 - **Concise triggers**: `fin`, `final`, `prod`, `done`, `complete`
 
-## Process
+## Implementation
 
 ### 1. Stage All Changes
 ```bash
@@ -70,7 +78,7 @@ Co-authored-by: Claude <noreply@anthropic.com>
 ### Context Analysis
 The AI examines:
 - **Change scope**: Small fixes vs large features
-- **File types**: Documentation vs core functionality  
+- **File types**: Documentation vs core functionality
 - **Git history**: Pattern of recent commits
 - **User language**: Words like "final", "ready", "WIP", "experiment"
 
@@ -79,3 +87,29 @@ The AI examines:
 2. **User message content**: Detailed user message suggests verbose style
 3. **Auto-detection**: Falls back to context analysis
 4. **Default**: Verbose development style when uncertain
+
+## Examples
+
+1. **Auto-detect style**:
+   ```
+   /git:commit
+   ```
+   Claude analyzes context and chooses appropriate verbosity.
+
+2. **Development checkpoint**:
+   ```
+   /git:commit dev
+   ```
+   Creates verbose commit preserving implementation context.
+
+3. **Final commit**:
+   ```
+   /git:commit final
+   ```
+   Creates clean, concise commit suitable for main branch.
+
+4. **Custom message with style**:
+   ```
+   /git:commit "Fix authentication bug"
+   ```
+   Uses provided message, auto-detects style for additional context.
