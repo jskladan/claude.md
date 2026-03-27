@@ -32,30 +32,26 @@ Based on provided options, choose between:
 
 ### 2. Build Command
 
+**IMPORTANT**: Always pipe jtk output directly to jq in a single command to avoid temp files.
+
 #### For "my tickets":
 ```bash
-jtk issues search --jql "assignee = '$ATLASSIAN_EMAIL' AND resolution = Unresolved ORDER BY updated DESC" --max N -o json
+jtk issues search --jql "assignee = '$ATLASSIAN_EMAIL' AND resolution = Unresolved ORDER BY updated DESC" --max N -o json | jq -r '.issues[] | "| \(.key) | \(.fields.issuetype.name) | \(.fields.status.name) | \(.fields.summary) |"'
 ```
 
 **Note**: The `ATLASSIAN_EMAIL` environment variable must be set (typically to your email address, e.g., `user@company.com`).
 
 #### For project listing:
 ```bash
-jtk issues list --project <KEY> [--sprint current] [--full] [--max N] -o json
+jtk issues list --project <KEY> [--sprint current] [--full] [--max N] -o json | jq -r '.issues[] | "| \(.key) | \(.fields.issuetype.name) | \(.fields.status.name) | \(.fields.summary) |"'
 ```
 
 #### For custom JQL:
 ```bash
-jtk issues search --jql "<query>" [--full] [--max N] -o json
+jtk issues search --jql "<query>" [--full] [--max N] -o json | jq -r '.issues[] | "| \(.key) | \(.fields.issuetype.name) | \(.fields.status.name) | \(.fields.summary) |"'
 ```
 
 ### 3. Output Format
-Always use `-o json` for machine-readable output, then format into a markdown table.
-
-#### Format JSON to table:
-```bash
-<json_output> | jq -r '.issues[] | "| \(.key) | \(.fields.issuetype.name) | \(.fields.status.name) | \(.fields.summary) |"'
-```
 
 Present results as a markdown table:
 ```
