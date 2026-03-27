@@ -34,10 +34,10 @@ Based on provided options, choose between:
 
 #### For "my tickets":
 ```bash
-jtk issues search --jql "assignee = '$ATLASSIAN_USER' AND resolution = Unresolved ORDER BY updated DESC" --max N -o json
+jtk issues search --jql "assignee = '$ATLASSIAN_EMAIL' AND resolution = Unresolved ORDER BY updated DESC" --max N -o json
 ```
 
-**Note**: The `ATLASSIAN_USER` environment variable must be set (typically to your email address, e.g., `user@company.com`).
+**Note**: The `ATLASSIAN_EMAIL` environment variable must be set (typically to your email address, e.g., `user@company.com`).
 
 #### For project listing:
 ```bash
