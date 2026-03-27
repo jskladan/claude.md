@@ -34,8 +34,10 @@ Based on provided options, choose between:
 
 #### For "my tickets":
 ```bash
-jtk issues search --jql "assignee = currentUser() AND resolution = Unresolved ORDER BY updated DESC" --full -o json
+jtk issues search --jql "assignee = '$ATLASSIAN_USER' AND resolution = Unresolved ORDER BY updated DESC" --max N -o json
 ```
+
+**Note**: The `ATLASSIAN_USER` environment variable must be set (typically to your email address, e.g., `user@company.com`).
 
 #### For project listing:
 ```bash
@@ -48,11 +50,21 @@ jtk issues search --jql "<query>" [--full] [--max N] -o json
 ```
 
 ### 3. Output Format
-Always use `-o json` for machine-readable output that can be ingested for further work.
+Always use `-o json` for machine-readable output, then format into a markdown table.
 
-Parse and present results in a readable format:
-- Key, Summary, Status, Assignee
-- Optionally include Description if `--full` specified
+#### Format JSON to table:
+```bash
+<json_output> | jq -r '.issues[] | "| \(.key) | \(.fields.issuetype.name) | \(.fields.status.name) | \(.fields.summary) |"'
+```
+
+Present results as a markdown table:
+```
+| Key | Type | Status | Summary |
+|-----|------|--------|---------|
+| PROJ-123 | Story | In Progress | Example ticket summary |
+```
+
+If `--full` is specified, include Description as a separate line below each row or as an additional column if brief.
 
 ## Examples
 
