@@ -33,7 +33,7 @@ Comprehensive quality assurance checklist for AI-assisted development across all
 - [ ] **Frequency**: Appropriate commit frequency
 - [ ] **Squashing**: Squash workflow followed (reset method, not interactive rebase)
 - [ ] **Messages**: Adequately detailed commit messages used
-- [ ] **Co-authorship**: Included `Co-authored-by: [AI Model Name] <AI Model Email>`
+- [ ] **Co-authorship**: Included `Co-authored-by: Claude Code <noreply@anthropic.com>`
 - [ ] **History**: Clean history maintained
 
 ## Claude Code Integration

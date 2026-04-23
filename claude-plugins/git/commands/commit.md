@@ -60,7 +60,7 @@ Detailed context:
 - Testing approach taken
 - Next steps or follow-up needed
 
-Co-authored-by: Claude <noreply@anthropic.com>
+Co-authored-by: Claude Code <noreply@anthropic.com>
 ```
 
 #### Concise Final Style
@@ -70,7 +70,7 @@ Brief summary of main change
 - Key change 1
 - Key change 2
 
-Co-authored-by: Claude <noreply@anthropic.com>
+Co-authored-by: Claude Code <noreply@anthropic.com>
 ```
 
 ## Style Selection Logic

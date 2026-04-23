@@ -89,7 +89,7 @@ Detailed context:
 - Integrated testing approaches
 - Next steps synthesis
 
-Co-authored-by: Claude <noreply@anthropic.com>
+Co-authored-by: Claude Code <noreply@anthropic.com>
 ```
 
 **Concise Output (Final-style commits)**:
@@ -100,7 +100,7 @@ Implement [feature area]
 - Combined key change 2
 - Combined key change 3
 
-Co-authored-by: Claude <noreply@anthropic.com>
+Co-authored-by: Claude Code <noreply@anthropic.com>
 ```
 
 ### 4. Execute Merge

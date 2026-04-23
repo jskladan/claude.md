@@ -64,7 +64,7 @@ Detailed context:
 - Updated authentication middleware to handle edge cases
 - Fixed session cleanup on token invalidation
 
-Co-authored-by: Claude <noreply@anthropic.com>"
+Co-authored-by: Claude Code <noreply@anthropic.com>"
 ```
 
 #### To Concise Style (final/clean)
@@ -77,7 +77,7 @@ Transformed: "Implement OAuth authentication flow
 - Implement session management
 - Fix token refresh logic
 
-Co-authored-by: Claude <noreply@anthropic.com>"
+Co-authored-by: Claude Code <noreply@anthropic.com>"
 ```
 
 ### 4. Execute Reword
